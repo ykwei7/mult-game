@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const GameTimer = ({ handleGameEnd }) => {
-  const [remainingTime, setRemainingTime] = useState(10);
+  const [remainingTime, setRemainingTime] = useState(60);
 
   useEffect(() => {
     // Set up the interval to update the timer every second
