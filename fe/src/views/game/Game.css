@@ -1,0 +1,116 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.game-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+h3 {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+    0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
+  color: white;
+}
+
+h4 {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+    0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
+  color: white;
+}
+
+.score {
+  font-family: "Silkscreen", sans-serif;
+}
+
+.game {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-timer {
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 5px;
+}
+
+.game-pairs {
+  font-size: 4rem;
+}
+
+input {
+  width: 25%;
+  padding: 1rem;
+  border: 2px solid #656a6d;
+  border-radius: 4px;
+  outline: none; /* Remove the default focus outline */
+  font-family: "Press Start 2P", cursive; /* Use a pixelated font */
+  font-size: 1.5rem;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+}
+
+/* Glow effect on the borders when active */
+input:focus {
+  border-color: #b8b6af; /* Retro yellow */
+  box-shadow: 0 0 10px rgba(238, 238, 238, 0.822); /* Glow effect */
+}
+
+.game-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.game-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-btn {
+  margin-top: 2rem;
+  max-width: 15rem;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  80% {
+    transform: translateX(5px);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translateX(-5px);
+  }
+
+  40%,
+  60% {
+    transform: translateX(5px);
+  }
+}
+
+input:focus.shake-animation {
+  animation: shake 1s ease-in-out;
+  box-shadow: 0 0 10px rgba(234, 70, 70, 0.822); /* Glow effect */
+  border: 2px solid rgba(234, 70, 70, 0.822);
+}
