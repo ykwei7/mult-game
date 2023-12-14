@@ -66,7 +66,7 @@ export const getAddPairs = (LOWER_BOUND, UPPER_BOUND) => {
 export const getSubtPairs = (LOWER_BOUND, UPPER_BOUND) => {
   let pairs = [];
   for (let i = LOWER_BOUND; i <= UPPER_BOUND; i++) {
-    for (let j = LOWER_BOUND; j <= UPPER_BOUND; j++) {
+    for (let j = LOWER_BOUND; j <= i; j++) {
       pairs.push([i, j, i - j, "-"]);
     }
   }
