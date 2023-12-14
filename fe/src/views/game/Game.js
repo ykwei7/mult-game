@@ -77,6 +77,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
       inputRef.current.focus();
     }
     handleRestartGame();
+    // eslint-disable-next-line
   }, []);
 
   return (

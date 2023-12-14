@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const GameTimer = ({ handleGameEnd }) => {
-  const [remainingTime, setRemainingTime] = useState(5);
+  const [remainingTime, setRemainingTime] = useState(60);
+  const TEN_SECOND_MARK = 10;
 
   useEffect(() => {
     // Set up the interval to update the timer every second
@@ -20,12 +21,14 @@ const GameTimer = ({ handleGameEnd }) => {
     // Clean up the interval when the component unmounts
     return () => {
       clearInterval(timerInterval);
-    };
+    }; // eslint-disable-next-line
   }, [remainingTime]);
 
   return (
     <div
-      className={`game-timer ${remainingTime <= 10 ? "game-timer-red" : ""}`}
+      className={`game-timer ${
+        remainingTime <= TEN_SECOND_MARK ? "game-timer-red" : ""
+      }`}
     >
       {String(remainingTime).padStart(2, "0")}
     </div>
