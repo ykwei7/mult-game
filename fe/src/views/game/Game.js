@@ -11,6 +11,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
   const [score, setScore] = useState(0);
   const [hasGameEnded, setGameEnded] = useState(false);
   const [isWrongAns, setIsWrongAns] = useState(false);
+  const [gameMsg, setGameMsg] = useState("Game Ended");
   const inputRef = useRef(null);
 
   const handleInputChange = (event) => {
@@ -30,6 +31,8 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
 
   const getNextPair = () => {
     if (pairs?.length <= 1) {
+      setGameMsg("Congrats! You won!");
+      handleGameEnd();
       return;
     }
     const filteredPairs = pairs.slice(1);
@@ -85,7 +88,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
       <GameNav score={score} />
       {hasGameEnded ? (
         <div className="game-end">
-          <h3>Game Ended</h3>
+          <h3>{gameMsg}</h3>
           <h4>Final Score: {score}</h4>
           <div className="game-actions">
             <button onClick={handleRestartGame}>Try Again</button>

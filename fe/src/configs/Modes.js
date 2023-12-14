@@ -1,4 +1,5 @@
 const LOWER_MULT_DIV_BOUND = 0;
+const LOWER_DIV_BOUND = 1;
 const UPPER_MULT_DIV_BOUND = 12;
 const LOWER_ADD_SUB_BOUND = 0;
 const UPPER_ADD_SUB_BOUND = 100;
@@ -74,7 +75,7 @@ export const getSubtPairs = (LOWER_BOUND, UPPER_BOUND) => {
 
 export const getDivPairs = (LOWER_BOUND, UPPER_BOUND) => {
   let pairs = [];
-  for (let i = LOWER_BOUND; i <= UPPER_BOUND; i++) {
+  for (let i = LOWER_DIV_BOUND; i <= UPPER_BOUND; i++) {
     for (let j = LOWER_BOUND; j <= UPPER_BOUND; j++) {
       pairs.push([i * j, i, j, "÷"]);
     }
