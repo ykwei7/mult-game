@@ -3,6 +3,7 @@ import "./Game.css";
 import GameNav from "../../components/game/GameNav";
 import GameTimer from "../../components/game/GameTimer";
 import { getPairs, modesMapping } from "../../configs/Modes";
+import LoadingScreen from "../../components/loading/LoadingScreen";
 
 function Game({ handleBackNav, gameMode, toggleGameMode }) {
   const [pairs, setPairs] = useState([]);
@@ -11,6 +12,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
   const [score, setScore] = useState(0);
   const [hasGameEnded, setGameEnded] = useState(false);
   const [isWrongAns, setIsWrongAns] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [gameMsg, setGameMsg] = useState("Game Ended");
   const inputRef = useRef(null);
 
@@ -80,42 +82,51 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
       inputRef.current.focus();
     }
     handleRestartGame();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
     // eslint-disable-next-line
   }, []);
 
   return (
     <div className="game-container">
-      <GameNav score={score} />
-      {hasGameEnded ? (
-        <div className="game-end">
-          <h3>{gameMsg}</h3>
-          <h4>Final Score: {score}</h4>
-          <div className="game-actions">
-            <button onClick={handleRestartGame}>Try Again</button>
-            <button onClick={toggleGameMode}>
-              Mode: {modesMapping[gameMode]}
-            </button>
-            <button onClick={handleBackNav}>Back</button>
-          </div>
-        </div>
+      {isLoading ? (
+        <LoadingScreen />
       ) : (
-        <div className="game">
-          <GameTimer handleGameEnd={handleGameEnd} />
-          <div className="game-pairs">
-            {currPair[0]} {currPair[3]} {currPair[1]}
-          </div>
-          <input
-            type="number"
-            ref={inputRef}
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            className={isWrongAns ? "shake-animation" : ""}
-          />
-          <button className="back-btn" onClick={handleBackNav}>
-            Back
-          </button>
-        </div>
+        <>
+          <GameNav score={score} />
+          {hasGameEnded ? (
+            <div className="game-end">
+              <h3>{gameMsg}</h3>
+              <h4>Final Score: {score}</h4>
+              <div className="game-actions">
+                <button onClick={handleRestartGame}>Try Again</button>
+                <button onClick={toggleGameMode}>
+                  Mode: {modesMapping[gameMode]}
+                </button>
+                <button onClick={handleBackNav}>Back</button>
+              </div>
+            </div>
+          ) : (
+            <div className="game">
+              <GameTimer handleGameEnd={handleGameEnd} />
+              <div className="game-pairs">
+                {currPair[0]} {currPair[3]} {currPair[1]}
+              </div>
+              <input
+                type="number"
+                ref={inputRef}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                className={isWrongAns ? "shake-animation" : ""}
+              />
+              <button className="back-btn" onClick={handleBackNav}>
+                Back
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
