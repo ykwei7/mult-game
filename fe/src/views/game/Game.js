@@ -75,6 +75,10 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
     setCurrPair(allPairs[0]);
     setGameEnded(false);
     setScore(0);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
   };
 
   useEffect(() => {
@@ -82,9 +86,6 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
       inputRef.current.focus();
     }
     handleRestartGame();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
     // eslint-disable-next-line
   }, []);
 
