@@ -4,8 +4,9 @@ import GameNav from "../../components/game/GameNav";
 import GameTimer from "../../components/game/GameTimer";
 import { getPairs, modesMapping } from "../../configs/Modes";
 import LoadingScreen from "../../components/loading/LoadingScreen";
+import { startBgMusic, stopBgMusic, playCorrectSound, playWrongSound, playGameOverSound } from "../../utils/audio";
 
-function Game({ handleBackNav, gameMode, toggleGameMode }) {
+function Game({ handleBackNav, gameMode, toggleGameMode, gameDuration }) {
   const [pairs, setPairs] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [currPair, setCurrPair] = useState([]);
@@ -48,9 +49,11 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
     }
 
     if (+inputValue === currPair[2]) {
+      playCorrectSound();
       setScore((prevScore) => prevScore + 1);
       getNextPair();
     } else {
+      playWrongSound();
       setIsWrongAns(true);
       setTimeout(() => {
         setIsWrongAns(false);
@@ -66,6 +69,8 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
   };
 
   const handleGameEnd = () => {
+    stopBgMusic();
+    playGameOverSound();
     setGameEnded(true);
   };
 
@@ -78,6 +83,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      startBgMusic();
     }, 4000);
   };
 
@@ -86,6 +92,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
       inputRef.current.focus();
     }
     handleRestartGame();
+    return () => stopBgMusic();
     // eslint-disable-next-line
   }, []);
 
@@ -110,7 +117,7 @@ function Game({ handleBackNav, gameMode, toggleGameMode }) {
             </div>
           ) : (
             <div className="game">
-              <GameTimer handleGameEnd={handleGameEnd} />
+              <GameTimer handleGameEnd={handleGameEnd} gameDuration={gameDuration} />
               <div className="game-pairs">
                 {currPair[0]} {currPair[3]} {currPair[1]}
               </div>

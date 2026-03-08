@@ -28,6 +28,28 @@ h4 {
   font-family: "Silkscreen", sans-serif;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mute-btn {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.6rem;
+  min-width: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.mute-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .game {
   width: 100%;
   display: flex;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-const GameTimer = ({ handleGameEnd }) => {
-  const [remainingTime, setRemainingTime] = useState(60);
+const GameTimer = ({ handleGameEnd, gameDuration = 60 }) => {
+  const [remainingTime, setRemainingTime] = useState(gameDuration);
   const TEN_SECOND_MARK = 10;
 
   useEffect(() => {
